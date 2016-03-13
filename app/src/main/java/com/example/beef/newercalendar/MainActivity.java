@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
 
     //use the String eventTitle to save event from dialog
     private void addEvents(String eventKey, String eventTitle){
-        Toast.makeText(this, "Called addEvents, event to be added was" + eventTitle + "and event key was" + eventKey, Toast.LENGTH_LONG).show();
+        //Toast.makeText(this, "Called addEvents, event to be added was" + eventTitle + "and event key was" + eventKey, Toast.LENGTH_LONG).show();
         SharedPreferences.Editor myE;
         SharedPreferences addPreferences = getPreferences(MODE_PRIVATE);
         myE = addPreferences.edit();
@@ -130,12 +130,13 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         */
-
-
-
         mySet.add(eventTitle);
+        if(mySet.contains("No Events Entered")){
+            mySet.remove("No Events Entered");
+        }
         myE.putStringSet(eventKey, mySet);
         myE.commit();
+        displayEvents(eventKey);
     }
 
     private void displayEvents(String dateKey) {//need input for the day you're displaying events for
